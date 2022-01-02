@@ -1,0 +1,5 @@
+12324567890;Book;Trilleris;Suzanna;Publisher;300;1999
+12324567891;Bada speles 2;Trilleris;Suzanna;Publisher;300;2000
+12324567892;Bada speles 3;Trilleris;Suzanna;Publisher;300;2001
+12324567893;Bada speles 4;Trilleris;Suzanna;Publisher;300;2002
+12324567894;Crazy;Comedy;Comedian;Comedy Club;667;2002
