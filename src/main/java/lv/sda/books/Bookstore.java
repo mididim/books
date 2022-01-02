@@ -15,7 +15,7 @@ import static java.util.Collections.emptyList;
 public class Bookstore {
 
     //Agris
-  /*  static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
     final String filePath = "src/main/resources/books.txt";
     final String INV = "Invalid input";
     private List<Book> books;
@@ -157,11 +157,10 @@ public class Bookstore {
 
     public boolean isValidInputAZ(String input){
         return input.matches("^[A-Za-z ]+$");
-    }*/
+    }
 
     //Dima
-
-    final String filePath = "src/main/resources/books.txt";
+/*    final String filePath = "src/main/resources/books.txt";
     static Scanner scanner = new Scanner(System.in);
 
     private List<Book> books;
@@ -278,6 +277,6 @@ public class Bookstore {
         }catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 }

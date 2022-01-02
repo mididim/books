@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ApplicationTest {
 
-  /*  @Test
+    @Test
     public void sampleTest_0(){
         Bookstore BS = new Bookstore();
         assertEquals(4,BS.searchBook("", 0).size());
@@ -32,6 +32,6 @@ public class ApplicationTest {
         Bookstore BS = new Bookstore();
         BS.removeBook(BS.searchBook("123", 1).get(0));
         assertEquals(1,BS.searchBook("", 0).size());
-    }*/
+    }
 
 }

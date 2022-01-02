@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Application {
 
     //Agris
-/*    static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         Bookstore BS = new Bookstore();
@@ -29,10 +29,10 @@ public class Application {
                 case "6" -> BS.saveData();
             }
         }
-    }*/
+    }
 
     //Dima
-    static Scanner scanner = new Scanner(System.in);
+/*    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
 
@@ -63,7 +63,7 @@ public class Application {
 
                 case "2":
                     //full old method
-                    /*System.out.println("Adding Book");
+                    *//*System.out.println("Adding Book");
 
                     Book b1 = new Book();
                     System.out.println("Enter ISBN: ");
@@ -88,7 +88,7 @@ public class Application {
                     b1.setPublishingYear(LocalDate.of(2001,1,1));
 
                     bookStore.addBook(b1);
-                    bookStore.allBooks();*/
+                    bookStore.allBooks();*//*
 
                     bookStore.addBook(bookStore.newBookInput());
 
@@ -121,6 +121,6 @@ public class Application {
             }
         }
 
-    }
+    }*/
 
 }
