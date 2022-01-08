@@ -109,8 +109,6 @@ public class Bookstore {
         System.out.println("Enter Publisher:");
         newBook.setPublisher(scanner.nextLine());
 
-        System.out.println("Enter number of pages:");
-
         //enter number of pages loop
         while (true) {
             System.out.println("Enter number of pages:");

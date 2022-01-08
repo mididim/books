@@ -33,5 +33,5 @@ public class ApplicationTest {
         BS.removeBook(BS.searchBook("12324567892", 1).get(0));
         assertEquals(3,BS.searchBook("", 0).size());
     }
-    
+
 }
