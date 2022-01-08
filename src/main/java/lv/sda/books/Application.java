@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Application {
 
-    //Agris
+
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {

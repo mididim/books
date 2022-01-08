@@ -13,10 +13,11 @@ import static java.util.Collections.emptyList;
 
 public class Bookstore {
 
-    //Agris
+
     static Scanner scanner = new Scanner(System.in);
     final String filePath = "src/main/resources/books.txt";
     final String INV = "Invalid input";
+
     private List<Book> books;
 
     public Bookstore() {
@@ -107,13 +108,6 @@ public class Bookstore {
             }
         }
 
-        //old enter author
- /*       if (isValidInputAZ(myInput)) newBook.setAuthor(myInput);
-        else {
-            System.out.println(INV);
-            return null;
-        }*/
-
         System.out.println("Enter Publisher:");
         newBook.setPublisher(scanner.nextLine());
 
@@ -132,18 +126,6 @@ public class Bookstore {
             }
         }
 
-        //old enter pages
-/*
-
-        System.out.println("Enter number of pages:");
-        myInput = scanner.nextLine();
-        if (isValidInput09(myInput)) newBook.setPages(Integer.parseInt(myInput));
-        else {
-            System.out.println(INV);
-            return null;
-        }
-*/
-
         // Enter publishing year loop
         while (true) {
             System.out.println("Enter publishing year:");
@@ -156,23 +138,8 @@ public class Bookstore {
             }
         }
 
-
-        //old enter year
-/*
-        System.out.println("Enter publishing year:");
-        myInput = scanner.nextLine();
-        if (isValidInput09(myInput) && (Calendar.getInstance().get(Calendar.YEAR)) - Integer.parseInt(myInput) >= 0)
-            newBook.setPublishingYear(LocalDate.of(Integer.parseInt(myInput), 1, 1));
-        else {
-            System.out.println(INV);
-            return null;
-        }
-        */
-
-
         return newBook;
     }
-
 
     // Add new book
     public void addBook(Book book) {
