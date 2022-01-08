@@ -117,6 +117,7 @@ public class Bookstore {
         System.out.println("Enter Publisher:");
         newBook.setPublisher(scanner.nextLine());
 
+        System.out.println("Enter number of pages:");
 
         //enter number of pages loop
         while (true) {
@@ -221,125 +222,5 @@ public class Bookstore {
     public boolean isValidInputAZ(String input) {
         return input.matches("^[A-Za-z ]+$");
     }
-
-    //Dima
-/*    final String filePath = "src/main/resources/books.txt";
-    static Scanner scanner = new Scanner(System.in);
-
-    private List<Book> books;
-
-    public Bookstore() {
-        try {
-            Path path = Paths.get("src/main/resources/books.txt");
-
-            books = Files.lines(path)
-                    .map(line -> {
-                        List<String> fields = Arrays.stream(line.split(";"))
-                                .collect(Collectors.toList());
-                        return new Book(
-                                fields.get(0),
-                                fields.get(1),
-                                fields.get(2),
-                                fields.get(3),
-                                fields.get(4),
-                                Integer.parseInt(fields.get(5)),
-                                LocalDate.of(Integer.parseInt(fields.get(6)), 1, 1)
-                        );
-                    })
-                    .collect(Collectors.toList());
-            books.forEach(System.out::println);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-    public List<Book> searchBook(String query) {
-        // meklēsim grāmatas pēc query (nosaukma)
-
-        for (Book book : books) {
-            System.out.println();
-            if (book.getTitle().equalsIgnoreCase(query)) {
-                System.out.println(book.toString());
-            }
-        }
-        return emptyList();
-    }
-
-
-    public Book newBookInput() {
-        // pievienosim grāmatu
-
-        System.out.println("Adding Book");
-        Book b1 = new Book();
-
-        System.out.println("Enter ISBN: ");
-        b1.setIsbn(scanner.nextLine());
-
-        System.out.println("Enter title: ");
-        b1.setTitle(scanner.nextLine());
-
-        System.out.println("Enter description: ");
-        b1.setDescription(scanner.nextLine());
-
-        System.out.println("Enter author: ");
-        b1.setAuthor(scanner.nextLine());
-
-        System.out.println("Enter publisher: ");
-        b1.setPublisher(scanner.nextLine());
-
-        System.out.println("Enter number of pages: ");
-        b1.setPages(scanner.nextInt());
-
-        System.out.println("Enter publishing year [yyyy-MM-dd]: ");
-        b1.setPublishingYear(LocalDate.parse(scanner.next()));
-
-        return b1;
-    }
-
-        public void addBook(Book b1) {
-            if (b1 != null) books.add(b1);
-
-      }
-
-    public void removeBook(String isbn) {
-
-        int counter = 0;
-        for (Book book: books){
-            counter ++;
-            if (book.getIsbn().equals(isbn)){
-                books.remove(counter -1);
-                break;
-            }
-        }
-    }
-
-    public Book getInfo(String isbn) {
-        for (Book book : books) {
-            if (book.getIsbn().equals(isbn)) {
-                System.out.println(book.toString());
-            }
-        }
-        return null;
-    }
-
-    public List<Book> allBooks() {
-        // print book names
-
-        books.forEach(System.out::println);
-
-        return emptyList();
-    }
-
-    public void saveData(){
-        try(BufferedWriter out = new BufferedWriter(new FileWriter(filePath))){
-            for (Book book: books) out.write(book.toCSV());
-            out.close();
-            System.out.println("Data saved successfully");
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 
 }
