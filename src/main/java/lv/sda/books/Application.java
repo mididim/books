@@ -15,15 +15,20 @@ public class Application {
             Bookstore.printMenu();
             String input = scanner.nextLine();
 
-            if ("q".equalsIgnoreCase(input)){
+            if ("q".equalsIgnoreCase(input)) {
                 System.out.println("Exit");
                 break;
             }
             switch (input) {
                 case "1" -> BS.printData("Search book by name:", BS.searchBook(BS.inputBookTitle(), 2));
                 case "2" -> BS.addBook(BS.newBookInput());
-                case "3" -> { try {BS.removeBook(BS.searchBook(BS.inputBookIsbn(), 1).get(0));}
-                catch (Exception e){ System.out.println("Book not found");} }
+                case "3" -> {
+                    try {
+                        BS.removeBook(BS.searchBook(BS.inputBookIsbn(), 1).get(0));
+                    } catch (Exception e) {
+                        System.out.println("Book not found");
+                    }
+                }
                 case "4" -> BS.printData("Search book by isbn nr.:", BS.searchBook(BS.inputBookIsbn(), 1));
                 case "5" -> BS.printData("List of all books:", BS.searchBook("", 0));
                 case "6" -> BS.saveData();
@@ -63,7 +68,7 @@ public class Application {
 
                 case "2":
                     //full old method
-                    *//*System.out.println("Adding Book");
+                    System.out.println("Adding Book");
 
                     Book b1 = new Book();
                     System.out.println("Enter ISBN: ");
@@ -88,7 +93,7 @@ public class Application {
                     b1.setPublishingYear(LocalDate.of(2001,1,1));
 
                     bookStore.addBook(b1);
-                    bookStore.allBooks();*//*
+                    bookStore.allBooks();
 
                     bookStore.addBook(bookStore.newBookInput());
 

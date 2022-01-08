@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
 
-
 public class Bookstore {
 
     //Agris
@@ -19,9 +18,10 @@ public class Bookstore {
     final String filePath = "src/main/resources/books.txt";
     final String INV = "Invalid input";
     private List<Book> books;
-    public Bookstore(){
+
+    public Bookstore() {
         try {
-            Path path = Paths.get(filePath);
+            Path path = Paths.get(filePath); //Path is the new API to access files , starting from JAVA7. Before it was Files
             books = Files.lines(path)
                     .map(line -> {
                         List<String> fields = Arrays.stream(line.split(";")).collect(Collectors.toList());
@@ -42,29 +42,33 @@ public class Bookstore {
         }
     }
 
-    //Search book
-    //Action:
-    //0 - Return all books
-    //1 - Search by ISBN
-    //2 - Search by Title
+
     public List<Book> searchBook(String query, int action) {
         switch (action) {
-            case 0 -> { return books; }
-            case 1 -> { if (query.equals(INV)) {
-                System.out.println(INV);
-                return Collections.emptyList();
-            } else { return books.stream().filter(e->e.getIsbn().equals(query)).collect(Collectors.toList());} }
-            case 2 -> { return books.stream().filter(e->e.getTitle().equalsIgnoreCase(query)).collect(Collectors.toList()); }
+            case 0 -> {
+                return books;
+            }
+            case 1 -> {
+                if (query.equals(INV)) {
+                    System.out.println(INV);
+                    return Collections.emptyList();
+                } else {
+                    return books.stream().filter(e -> e.getIsbn().equals(query)).collect(Collectors.toList());
+                }
+            }
+            case 2 -> {
+                return books.stream().filter(e -> e.getTitle().equalsIgnoreCase(query)).collect(Collectors.toList());
+            }
         }
         return Collections.emptyList();
     }
 
-    public String inputBookTitle(){
+    public String inputBookTitle() {
         System.out.println("Enter book Title:");
         return scanner.nextLine();
     }
 
-    public String inputBookIsbn(){
+    public String inputBookIsbn() {
         System.out.println("Enter book Isbn:");
         String myIsbn = scanner.nextLine();
         return isValidInput09(myIsbn) ? myIsbn : INV;
@@ -79,32 +83,70 @@ public class Bookstore {
         String myInput = inputBookIsbn();
         if (myInput.equals(INV)) {
             System.out.println(INV);
-            return null;}
-        else newBook.setIsbn(myInput);
+            return null;
+        } else newBook.setIsbn(myInput);
 
         newBook.setTitle(inputBookTitle());
 
         System.out.println("Enter Description:");
         newBook.setDescription(scanner.nextLine());
 
-        System.out.println("Enter Author:");
-        myInput = scanner.nextLine();
-        if (isValidInputAZ(myInput)) newBook.setAuthor(myInput);
-        else {System.out.println(INV); return null;}
+        //enter author loop
+        while (true) {
+            System.out.println("Enter Author:");
+            myInput = scanner.nextLine();
+            if (isValidInputAZ(myInput)) {
+                newBook.setAuthor(myInput);
+                break;
+            } else {
+                System.out.println("Invalid input! Please enter letters only");
+            }
+        }
+
+        //old enter author
+ /*       if (isValidInputAZ(myInput)) newBook.setAuthor(myInput);
+        else {
+            System.out.println(INV);
+            return null;
+        }*/
 
         System.out.println("Enter Publisher:");
         newBook.setPublisher(scanner.nextLine());
 
+
+        //enter number of pages loop
+        while (true) {
+            System.out.println("Enter number of pages:");
+            myInput = scanner.nextLine();
+
+            if (isValidInput09(myInput)) {
+                newBook.setPages(Integer.parseInt(myInput));
+                break;
+            } else {
+                System.out.println("Invalid input! Please enter numbers only");
+            }
+        }
+
+        //old enter pages
+/*
+
         System.out.println("Enter number of pages:");
         myInput = scanner.nextLine();
         if (isValidInput09(myInput)) newBook.setPages(Integer.parseInt(myInput));
-        else {System.out.println(INV); return null;}
+        else {
+            System.out.println(INV);
+            return null;
+        }
+*/
 
         System.out.println("Enter publishing year:");
         myInput = scanner.nextLine();
-        if (isValidInput09(myInput) && (Calendar.getInstance().get(Calendar.YEAR))-Integer.parseInt(myInput)>=0)
-                                        newBook.setPublishingYear(LocalDate.of(Integer.parseInt(myInput), 1, 1));
-        else {System.out.println(INV); return null;}
+        if (isValidInput09(myInput) && (Calendar.getInstance().get(Calendar.YEAR)) - Integer.parseInt(myInput) >= 0)
+            newBook.setPublishingYear(LocalDate.of(Integer.parseInt(myInput), 1, 1));
+        else {
+            System.out.println(INV);
+            return null;
+        }
 
         return newBook;
     }
@@ -122,19 +164,19 @@ public class Bookstore {
         System.out.println("Book removed");
     }
 
-    public void printData(String msg, List<Book> books){
+    public void printData(String msg, List<Book> books) {
         System.out.println(msg);
-        if ((long) books.size() !=0) books.forEach(book -> System.out.println(book.toString()));
+        if ((long) books.size() != 0) books.forEach(book -> System.out.println(book.toString()));
         else System.out.println("Book(s) not found");
     }
 
     //Save data
-    public void saveData(){
-        try(BufferedWriter out = new BufferedWriter(new FileWriter(filePath))){
-            for (Book book: books) out.write(book.toCSV());
+    public void saveData() {
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(filePath))) {
+            for (Book book : books) out.write(book.toCSV());
             out.close();
             System.out.println("Data saved successfully");
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -151,11 +193,11 @@ public class Bookstore {
                 Press Q to quit\s""");
     }
 
-    public boolean isValidInput09(String input){
+    public boolean isValidInput09(String input) {
         return input.matches("[0-9]+");
     }
 
-    public boolean isValidInputAZ(String input){
+    public boolean isValidInputAZ(String input) {
         return input.matches("^[A-Za-z ]+$");
     }
 
