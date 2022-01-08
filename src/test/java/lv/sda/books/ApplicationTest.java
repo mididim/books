@@ -7,31 +7,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ApplicationTest {
 
     @Test
-    public void searchBook(){
+    public void sampleTest_0(){
         Bookstore BS = new Bookstore();
-        assertEquals(4,BS.searchBook("", 0).size());
+        assertEquals(12,BS.searchBook("", "searchAllBooks").size());
     }
 
     @Test
-    public void addBook(){
+    public void sampleTest_1(){
         Bookstore BS = new Bookstore();
-        Book newBook = new Book("00001", "Title", "Description", "Author",
-                "Publisher", 100, LocalDate.of(2000,1,1));
+        Book newBook = new Book("00001", "Title", "Description", "Author", "Publisher", 100, LocalDate.of(2000,1,1));
         BS.addBook(newBook);
-        assertEquals(5,BS.searchBook("", 0).size());
+        assertEquals(13,BS.searchBook("", "searchAllBooks").size());
     }
 
     @Test
-    public void searchByTitle(){
+    public void sampleTest_2(){
         Bookstore BS = new Bookstore();
-        assertEquals(0,BS.searchBook("", 2).size());
+        assertEquals(3,BS.searchBook("Book 222", "searchByTitle").size());
     }
 
     @Test
-    public void removeBook(){
+    public void sampleTest_3(){
         Bookstore BS = new Bookstore();
-        BS.removeBook(BS.searchBook("12324567892", 1).get(0));
-        assertEquals(3,BS.searchBook("", 0).size());
+        BS.removeBook(BS.searchBook("123456", "searchByIsbn").get(0));
+        assertEquals(11,BS.searchBook("", "searchAllBooks").size());
     }
 
 }

@@ -2,7 +2,7 @@ package lv.sda.books;
 
 import java.time.LocalDate;
 
-public class Book {
+class Book {
 
     private String isbn;
     private String title;
@@ -13,8 +13,7 @@ public class Book {
     private LocalDate publishingYear;
 
     //Constructor
-    public Book(String isbn, String title, String description, String author,
-                String publisher, int pages, LocalDate publishingYear) {
+    public Book(String isbn, String title, String description, String author, String publisher, int pages, LocalDate publishingYear) {
         this.isbn = isbn;
         this.title = title;
         this.description = description;
@@ -24,15 +23,13 @@ public class Book {
         this.publishingYear = publishingYear;
     }
 
-    public Book() {
-    }
+    public Book(){}
 
     //Getters
 
     public String getIsbn() {
         return isbn;
     }
-
     public String getTitle() {
         return title;
     }
@@ -42,27 +39,21 @@ public class Book {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
     public void setAuthor(String author) {
         this.author = author;
     }
-
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-
     public void setPages(int pages) {
         this.pages = pages;
     }
-
     public void setPublishingYear(LocalDate publishingYear) {
         this.publishingYear = publishingYear;
     }
@@ -70,17 +61,17 @@ public class Book {
 
     @Override
     public String toString() {
-        return isbn + ", " +
+        return  isbn + ", " +
                 title + ", " +
                 description + ", " +
                 author + ", " +
                 publisher + ", " +
-                pages + ", " +
+                pages +", " +
                 publishingYear.getYear();
     }
 
     public String toCSV() {
-        return isbn + ";" +
+        return  isbn + ";" +
                 title + ";" +
                 description + ";" +
                 author + ";" +
