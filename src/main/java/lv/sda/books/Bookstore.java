@@ -74,17 +74,21 @@ public class Bookstore {
         return isValidInput09(myIsbn) ? myIsbn : INV;
     }
 
+
     // Add new book
     public Book newBookInput() {
 
         Book newBook = new Book();
         System.out.println("Add book");
 
-        String myInput = inputBookIsbn();
-        if (myInput.equals(INV)) {
-            System.out.println(INV);
-            return null;
-        } else newBook.setIsbn(myInput);
+        //Input book ISBN
+        String myInput = INV;
+        while (myInput.equals(INV)) {
+            myInput = inputBookIsbn();
+            if (myInput.equals(INV)) System.out.println(INV);
+            else newBook.setIsbn(myInput);
+        }
+
 
         newBook.setTitle(inputBookTitle());
 
@@ -139,6 +143,21 @@ public class Bookstore {
         }
 */
 
+        // Enter publishing year loop
+        while (true) {
+            System.out.println("Enter publishing year:");
+            myInput = scanner.nextLine();
+            if (isValidInput09(myInput) && (Calendar.getInstance().get(Calendar.YEAR)) - Integer.parseInt(myInput) >= 0) {
+                newBook.setPublishingYear(LocalDate.of(Integer.parseInt(myInput), 1, 1));
+                break;
+            } else {
+                System.out.println("Invalid input! Please enter numbers only");
+            }
+        }
+
+
+        //old enter year
+/*
         System.out.println("Enter publishing year:");
         myInput = scanner.nextLine();
         if (isValidInput09(myInput) && (Calendar.getInstance().get(Calendar.YEAR)) - Integer.parseInt(myInput) >= 0)
@@ -147,6 +166,8 @@ public class Bookstore {
             System.out.println(INV);
             return null;
         }
+        */
+
 
         return newBook;
     }
