@@ -22,7 +22,7 @@ public class Bookstore {
 
     public Bookstore() {
         try {
-            Path path = Paths.get(filePath); //Path is the new API to access files , starting from JAVA7. Before it was Files
+            Path path = Paths.get(filePath);
             books = Files.lines(path)
                     .map(line -> {
                         List<String> fields = Arrays.stream(line.split(";")).collect(Collectors.toList());
@@ -37,7 +37,7 @@ public class Bookstore {
                         );
                     })
                     .collect(Collectors.toList());
-            //books.forEach(System.out::println);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -75,7 +75,6 @@ public class Bookstore {
         return isValidInput09(myIsbn) ? myIsbn : INV;
     }
 
-
     // Add new book
     public Book newBookInput() {
 
@@ -89,7 +88,6 @@ public class Bookstore {
             if (myInput.equals(INV)) System.out.println(INV);
             else newBook.setIsbn(myInput);
         }
-
 
         newBook.setTitle(inputBookTitle());
 

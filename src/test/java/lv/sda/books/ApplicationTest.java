@@ -9,7 +9,7 @@ public class ApplicationTest {
     @Test
     public void searchBook(){
         Bookstore BS = new Bookstore();
-        assertEquals(5,BS.searchBook("", 0).size());
+        assertEquals(4,BS.searchBook("", 0).size());
     }
 
     @Test
@@ -18,21 +18,20 @@ public class ApplicationTest {
         Book newBook = new Book("00001", "Title", "Description", "Author",
                 "Publisher", 100, LocalDate.of(2000,1,1));
         BS.addBook(newBook);
-        assertEquals(6,BS.searchBook("", 0).size());
+        assertEquals(5,BS.searchBook("", 0).size());
     }
 
     @Test
     public void searchByTitle(){
         Bookstore BS = new Bookstore();
-        assertEquals(0,BS.searchBook("Book 222", 2).size());
+        assertEquals(0,BS.searchBook("", 2).size());
     }
 
     @Test
     public void removeBook(){
         Bookstore BS = new Bookstore();
-        BS.removeBook(BS.searchBook("12324567893", 1).get(0));
+        BS.removeBook(BS.searchBook("12324567892", 1).get(0));
         assertEquals(3,BS.searchBook("", 0).size());
     }
-
-
+    
 }
