@@ -18,6 +18,23 @@ public class Bookstore {
     final String filePath = "src/main/resources/books.txt";
     final String INV = "Invalid input";
 
+    public boolean isValidInput09(String input) {
+        return input.matches("[0-9]+");
+    }
+
+    public boolean isValidInputAZ(String input) {
+        return input.matches("^[A-Za-z ]+$");
+    }
+
+    public void writeLetters() {
+        System.out.println("Invalid input! Please enter letters only");
+    }
+
+    public void writeNumbers() {
+        System.out.println("Invalid input! Please enter numbers only");
+    }
+
+
     private List<Book> books;
 
     public Bookstore() {
@@ -102,7 +119,7 @@ public class Bookstore {
                 newBook.setAuthor(myInput);
                 break;
             } else {
-                System.out.println("Invalid input! Please enter letters only");
+                writeLetters();
             }
         }
 
@@ -118,7 +135,7 @@ public class Bookstore {
                 newBook.setPages(Integer.parseInt(myInput));
                 break;
             } else {
-                System.out.println("Invalid input! Please enter numbers only");
+                writeNumbers();
             }
         }
 
@@ -130,7 +147,7 @@ public class Bookstore {
                 newBook.setPublishingYear(LocalDate.of(Integer.parseInt(myInput), 1, 1));
                 break;
             } else {
-                System.out.println("Invalid input! Please enter numbers only");
+                writeNumbers();
             }
         }
 
@@ -176,14 +193,6 @@ public class Bookstore {
                 5. List Available Books
                 6. Save data to local file
                 Press Q to quit\s""");
-    }
-
-    public boolean isValidInput09(String input) {
-        return input.matches("[0-9]+");
-    }
-
-    public boolean isValidInputAZ(String input) {
-        return input.matches("^[A-Za-z ]+$");
     }
 
 }
