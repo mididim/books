@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
-
 import static java.util.Collections.emptyList;
 
 public class Bookstore {
@@ -16,11 +15,9 @@ public class Bookstore {
     final String filePath = "src/main/resources/books.txt";
     final String INV = "Invalid input";
     private List<Book> books;
-
     public boolean isValidInput09(String input) {
         return input.matches("[0-9]+");
     }
-
     public boolean isValidInputAZ(String input) {
         return input.matches("^[A-Za-z ]+$");
     }
@@ -42,30 +39,23 @@ public class Bookstore {
                         );
                     })
                     .collect(Collectors.toList());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) { e.printStackTrace();}
     }
 
     public List<Book> searchBook(String query, String action) {
         switch (action) {
             case "searchAllBooks" -> {
-                return books;
-            }
+                return books; }
             case "searchByIsbn" -> {
                 if (query.equals(INV)) {
                     System.out.println(INV);
-                    return Collections.emptyList();
-                } else {
+                    return Collections.emptyList();}
+                else {
                     return books.stream().filter(e -> e.getIsbn().equals(query))
-                            .collect(Collectors.toList());
-                }
-            }
+                            .collect(Collectors.toList());} }
             case "searchByTitle" -> {
                 return books.stream().filter(e -> e.getTitle().equalsIgnoreCase(query))
-                        .collect(Collectors.toList());
-            }
-        }
+                        .collect(Collectors.toList());} }
         return Collections.emptyList();
     }
 
@@ -79,9 +69,8 @@ public class Bookstore {
             myInput = scanner.nextLine();
             if (!isValidInput09(myInput)) {
                 System.out.println(INV + ". Enter only numbers!");
-                myInput = INV;
-            } else break;
-        }
+                myInput = INV; }
+            else break; }
         return myInput;
     }
 
@@ -91,9 +80,8 @@ public class Bookstore {
             myInput = scanner.nextLine();
             if (!isValidInputAZ(myInput)) {
                 System.out.println(INV + ". Enter only letters!");
-                myInput = INV;
-            } else break;
-        }
+                myInput = INV; }
+            else break; }
         return myInput;
     }
 
@@ -137,7 +125,6 @@ public class Bookstore {
     }
 
     public void printData(List<Book> books) {
-//        System.out.println(msg);
         if ((long) books.size() != 0) books.forEach(book -> System.out.println(book.toString()));
         else System.out.println("Book(s) not found");
     }
@@ -146,10 +133,8 @@ public class Bookstore {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(filePath))) {
             for (Book book : books) out.write(book.toCSV());
             out.close();
-            System.out.println("Data saved successfully");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            System.out.println("Data saved successfully"); }
+        catch (IOException e) {e.printStackTrace(); }
     }
 
     public static void printMenu() {

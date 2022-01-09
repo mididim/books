@@ -3,7 +3,6 @@ package lv.sda.books;
 import java.time.LocalDate;
 
 class Book {
-
     private String isbn;
     private String title;
     private String description;
@@ -12,7 +11,6 @@ class Book {
     private int pages;
     private LocalDate publishingYear;
 
-    //Constructor
     public Book(String isbn, String title, String description, String author, String publisher, int pages, LocalDate publishingYear) {
         this.isbn = isbn;
         this.title = title;
@@ -31,7 +29,6 @@ class Book {
     public String getTitle() {
         return title;
     }
-
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
@@ -55,7 +52,6 @@ class Book {
         this.publishingYear = publishingYear;
     }
 
-
     @Override
     public String toString() {
         return  isbn + ", " +
@@ -76,7 +72,6 @@ class Book {
                 pages + ";" +
                 publishingYear.getYear() + "\n";
     }
-
 }
 
 
