@@ -8,19 +8,28 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
+
 import static java.util.Collections.emptyList;
 
-public class Bookstore{
+public class Bookstore {
     static Scanner scanner = new Scanner(System.in);
     final String filePath = "src/main/resources/books.txt";
     final String INV = "Invalid input";
     private List<Book> books;
-    public Bookstore(){
+
+    public boolean isValidInput09(String input) {
+        return input.matches("[0-9]+");
+    }
+
+    public boolean isValidInputAZ(String input) {
+        return input.matches("^[A-Za-z ]+$");
+    }
+    
+    public Bookstore() {
         try {
             Path path = Paths.get(filePath);
             books = Files.lines(path)
                     .map(line -> {
-                        //List<String> fields = Arrays.stream(line.split(";")).collect(Collectors.toList());
                         List<String> fields = Arrays.stream(line.split(";")).toList();
                         return new Book(
                                 fields.get(0),
@@ -33,37 +42,40 @@ public class Bookstore{
                         );
                     })
                     .collect(Collectors.toList());
-            //books.forEach(System.out::println);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    //Search book
     public List<Book> searchBook(String query, String action) {
         switch (action) {
-            case "searchAllBooks" -> { return books; }
-            case "searchByIsbn" -> { if (query.equals(INV)) {
-                System.out.println(INV);
-                return Collections.emptyList();
-            } else { return books.stream().filter(e->e.getIsbn().equals(query))
-                    .collect(Collectors.toList());} }
-            case "searchByTitle" -> { return books.stream().filter(e->e.getTitle().equalsIgnoreCase(query))
-                    .collect(Collectors.toList()); }
+            case "searchAllBooks" -> {
+                return books;
+            }
+            case "searchByIsbn" -> {
+                if (query.equals(INV)) {
+                    System.out.println(INV);
+                    return Collections.emptyList();
+                } else {
+                    return books.stream().filter(e -> e.getIsbn().equals(query))
+                            .collect(Collectors.toList());
+                }
+            }
+            case "searchByTitle" -> {
+                return books.stream().filter(e -> e.getTitle().equalsIgnoreCase(query))
+                        .collect(Collectors.toList());
+            }
         }
         return Collections.emptyList();
     }
 
-    public String inputAll(){
+    public String inputAll() {
         return scanner.nextLine();
     }
 
-
-
-    public String inputNumber(){
+    public String inputNumber() {
         String myInput = INV;
-        while (myInput.equals(INV))
-        {
+        while (myInput.equals(INV)) {
             myInput = scanner.nextLine();
             if (!isValidInput09(myInput)) {
                 System.out.println(INV + ". Enter only numbers!");
@@ -73,10 +85,9 @@ public class Bookstore{
         return myInput;
     }
 
-    public String inputLetters(){
+    public String inputLetters() {
         String myInput = INV;
-        while (myInput.equals(INV))
-        {
+        while (myInput.equals(INV)) {
             myInput = scanner.nextLine();
             if (!isValidInputAZ(myInput)) {
                 System.out.println(INV + ". Enter only letters!");
@@ -86,7 +97,6 @@ public class Bookstore{
         return myInput;
     }
 
-    // Add new book
     public Book newBookInput() {
 
         Book newBook = new Book();
@@ -113,38 +123,31 @@ public class Bookstore{
         System.out.println("Enter publishing year:");
         newBook.setPublishingYear(LocalDate.of(Integer.parseInt(inputNumber()), 1, 1));
 
-        //if (isValidInput09(myInput) && (Calendar.getInstance().get(Calendar.YEAR))-Integer.parseInt(myInput)>=0) newBook.setPublishingYear(LocalDate.of(Integer.parseInt(myInput), 1, 1));
-        //else {System.out.println(INV); return null;}
-
         return newBook;
     }
 
-
-    // Add new book
     public void addBook(Book book) {
         if (book != null) books.add(book);
     }
 
-    // Remove book from list
     public void removeBook(Book book) {
         System.out.println("Remove book");
         books.remove(book);
         System.out.println("Book removed");
     }
 
-    public void printData(String msg, List<Book> books){
+    public void printData(String msg, List<Book> books) {
         System.out.println(msg);
-        if ((long) books.size() !=0) books.forEach(book -> System.out.println(book.toString()));
+        if ((long) books.size() != 0) books.forEach(book -> System.out.println(book.toString()));
         else System.out.println("Book(s) not found");
     }
 
-    //Save data
-    public void saveData(){
-        try(BufferedWriter out = new BufferedWriter(new FileWriter(filePath))){
-            for (Book book: books) out.write(book.toCSV());
+    public void saveData() {
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(filePath))) {
+            for (Book book : books) out.write(book.toCSV());
             out.close();
             System.out.println("Data saved successfully");
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -160,13 +163,4 @@ public class Bookstore{
                 6. Save data to local file
                 Press Q to quit\s""");
     }
-
-    public boolean isValidInput09(String input){
-        return input.matches("[0-9]+");
-    }
-
-    public boolean isValidInputAZ(String input){
-        return input.matches("^[A-Za-z ]+$");
-    }
-
 }

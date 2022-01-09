@@ -25,8 +25,6 @@ class Book {
 
     public Book(){}
 
-    //Getters
-
     public String getIsbn() {
         return isbn;
     }
@@ -34,7 +32,6 @@ class Book {
         return title;
     }
 
-    //Setters
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;

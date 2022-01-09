@@ -15,7 +15,8 @@ public class ApplicationTest {
     @Test
     public void addBook(){
         Bookstore BS = new Bookstore();
-        Book newBook = new Book("00001", "Title", "Description", "Author", "Publisher", 100, LocalDate.of(2000,1,1));
+        Book newBook = new Book("00001", "Title", "Description",
+                "Author", "Publisher", 100, LocalDate.of(2000,1,1));
         BS.addBook(newBook);
         assertEquals(6,BS.searchBook("", "searchAllBooks").size());
     }
