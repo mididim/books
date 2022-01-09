@@ -24,7 +24,7 @@ public class Bookstore {
     public boolean isValidInputAZ(String input) {
         return input.matches("^[A-Za-z ]+$");
     }
-    
+
     public Bookstore() {
         try {
             Path path = Paths.get(filePath);
@@ -136,8 +136,8 @@ public class Bookstore {
         System.out.println("Book removed");
     }
 
-    public void printData(String msg, List<Book> books) {
-        System.out.println(msg);
+    public void printData(List<Book> books) {
+//        System.out.println(msg);
         if ((long) books.size() != 0) books.forEach(book -> System.out.println(book.toString()));
         else System.out.println("Book(s) not found");
     }
